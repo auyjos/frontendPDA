@@ -24,7 +24,7 @@ console.log(fullName);
       <div class="w-1/4">
         <h2 class="text-2xl font-bold">Name: {{ fullName }}</h2>
       </div>
-      <div class="w-1/2 text-right">
+      <div class="w-1/2 text-right text-regresar">
         <RouterLink
           :to="{ name: 'listaUsuarios' }"
           class="text-blue-500 hover:underline"
@@ -92,6 +92,9 @@ console.log(fullName);
   height: 100px; /* Adjust the height as needed */
 }
 
+.text-regresar {
+  color: #0c0c0c !important;
+}
 /* Name Styles */
 .usuario-container h2 {
   color: #333; /* Adjust the color as needed */
