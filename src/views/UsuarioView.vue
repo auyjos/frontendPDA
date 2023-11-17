@@ -22,7 +22,7 @@ console.log(fullName);
         />
       </div>
       <div class="w-1/4">
-        <h2 class="text-2xl font-bold">Full name: {{ fullName }}</h2>
+        <h2 class="text-2xl font-bold">Name: {{ fullName }}</h2>
       </div>
       <div class="w-1/2 text-right">
         <RouterLink
