@@ -39,14 +39,15 @@ store.getUsers();
         </div>
       </div>
     </div>
-    <div class="flex flex-row">
-      <div class="columns-3 xl">
-        <CardUser
-          v-for="user in filteredUsers.length ? filteredUsers : store.users"
-          :key="user.id"
-          :user="user"
-        ></CardUser>
-      </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-center justify-items-center"
+    >
+      <CardUser
+        v-for="user in filteredUsers.length ? filteredUsers : store.users"
+        :key="user.id"
+        :user="user"
+      ></CardUser>
     </div>
     <div class="flex flex-row"></div>
   </div>

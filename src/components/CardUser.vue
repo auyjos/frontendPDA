@@ -2,34 +2,32 @@
 import { RouterLink } from "vue-router";
 const props = defineProps(["user"]);
 const fullName = `${props.user.title} ${props.user.firstName} ${props.user.lastName}`;
+console.log(props.user);
 </script>
 
 <template>
-  <div class="flex flex-wrap flex-col md:flex-row">
-    <div class="user-card rounded-md shadow-md m-2">
-      <div class="flex w-full m-4">
-        <div class="flex items-center">
-          <img
-            class="user-avatar h-20 w-24 object-cover rounded-full"
-            v-bind:src="props.user.picture"
-            alt="User"
-          />
-          <div class="user-details flex flex-col ml-4">
-            <h3 class="user-name font-bold text-lg text-tial-400">
-              {{ fullName }}
-            </h3>
-          </div>
-        </div>
-        <div class="flex flex-1 flex-grow w-full items-center justify-end">
-          <div class="user-link flex items-center mr-2">
-            <RouterLink
-              :to="{ name: 'usuario', params: { id: props.user.id } }"
-              class="text-blue-tial-500 hover:underline"
-            >
-              <img class="image" src="../assets/play.png" alt="" />
-            </RouterLink>
-          </div>
-        </div>
+  <div
+    class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-user"
+  >
+    <div class="flex flex-col items-center pb-10">
+      <img
+        class="w-24 h-24 mb-3 rounded-full shadow-lg"
+        v-bind:src="props.user.picture"
+        alt="Bonnie image"
+      />
+      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+        {{ fullName }}
+      </h5>
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        <p>{{ props.user?.id }}</p></span
+      >
+      <div class="flex mt-4 md:mt-6">
+        <RouterLink
+          :to="{ name: 'usuario', params: { id: props.user.id } }"
+          class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Ver
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -41,36 +39,8 @@ const fullName = `${props.user.title} ${props.user.firstName} ${props.user.lastN
   width: fit-content;
 }
 
-.user-avatar {
-  height: 5rem;
-  width: 6rem;
-}
-
-.image {
-  width: 20x;
-  height: 20px;
-}
-
-.user-details {
-  margin-left: 1rem;
-}
-
-.user-name {
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: #1a202c;
-}
-
-.user-link {
-  margin-right: 0.5rem;
-}
-
-.user-link a {
-  color: #3182ce;
-  text-decoration: none;
-}
-
-.user-link a:hover {
-  text-decoration: underline;
+.card-user {
+  padding: 4%;
+  margin: 5px;
 }
 </style>

@@ -21,6 +21,9 @@ export const useUsers = defineStore("users", {
           return user.firstName === userName;
         });
     },
+    fullName: (state) => {
+      return `${state.selectedUser?.title} ${state.selectedUser?.firstName} ${state.selectedUser?.lastName}`;
+    },
   },
   actions: {
     async getUsers() {
@@ -36,8 +39,10 @@ export const useUsers = defineStore("users", {
     async getUser(id) {
       try {
         this.selectedUser = await api.get(id);
+        console.log(this.selectedUser);
       } catch (error) {
         this.error = error;
+        console.log(error);
         // let the form component display the error
         return error;
       }

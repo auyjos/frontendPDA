@@ -1,10 +1,14 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { RouterLink } from "vue-router";
 import { useUsers } from "../stores/api/users.js";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const store = useUsers();
 store.getUser(route.params.id);
+console.log(store.selectedUser);
+const { fullName } = storeToRefs(store);
+console.log(fullName);
 </script>
 
 <template>
@@ -12,13 +16,13 @@ store.getUser(route.params.id);
     <div class="flex flex-row items-center justify-between mb-4">
       <div class="w-1/4">
         <img
-          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
+          v-bind:src="store.selectedUser?.picture"
           alt="User Image"
           class="shadow rounded-full max-w-full h-auto align-middle border-none"
         />
       </div>
       <div class="w-1/4">
-        <h2 class="text-2xl font-bold">Nombre</h2>
+        <h2 class="text-2xl font-bold">Nombre: {{ fullName }}</h2>
       </div>
       <div class="w-1/2 text-right">
         <RouterLink
@@ -30,7 +34,51 @@ store.getUser(route.params.id);
       </div>
     </div>
     <div class="flex flex-row">
-      <h2 class="text-2xl font-bold mb-4">Datos Usuario</h2>
+      <h2 class="text-2xl font-bold mb-4">
+        Datos Usuario
+        {{ store.selectedUser?.id }}
+      </h2>
+    </div>
+    <div>
+      <div class="bg-white overflow-hidden shadow rounded-lg border">
+        <div class="px-4 py-5 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            User Profile
+          </h3>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500">
+            This is some information about the user.
+          </p>
+        </div>
+        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+          <dl class="sm:divide-y sm:divide-gray-200">
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Full name</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {{ fullName }}
+              </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Email address</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                johndoe@example.com
+              </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Phone number</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                (123) 456-7890
+              </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Address</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                123 Main St<br />
+                Anytown, USA 12345
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
     </div>
   </div>
 </template>
