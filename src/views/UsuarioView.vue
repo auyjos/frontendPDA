@@ -18,7 +18,7 @@ console.log(fullName);
         <img
           v-bind:src="store.selectedUser?.picture"
           alt="User Image"
-          class="shadow rounded-full max-w-full h-auto align-middle border-none"
+          class="shadow rounded-full max-w-full h-auto align-middle border-solid border-4 border-black"
         />
       </div>
       <div class="w-1/4">
